@@ -113,8 +113,8 @@
     mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent 92%)}
   .slide{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:.35rem .45rem}
   .slide svg{width:100%; height:100%}
-  #viewer{position:absolute; inset:0}
-  #viewer canvas{display:block}
+  #viewer{position:absolute; inset:0; pointer-events:none}
+  #viewer canvas{display:block; pointer-events:none}
   #vfallback{width:100%; height:100%; padding:.6rem}
   #vortex{position:absolute; inset:0; width:100%; height:100%; display:none}
   .card-foot{position:relative; height:60px; border-top:1px solid var(--line); background:var(--panel)}
@@ -274,22 +274,22 @@
   <section class="band" id="capabilities">
     <div class="wrap">
       <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 01 · Capabilities</span><h2>What the agents do</h2></div>
+        <div class="lhs"><span class="tlabel">// 01 · Capabilities</span><h2>The anatomy of a computational scientist</h2></div>
         <div class="rhs">MODULES 06<br>STATUS ▸ active</div>
       </div>
       <div class="modules">
         <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/></svg></span><span class="idx">01 / 06</span></div>
-          <h3>Persistent kernel</h3><p>Variables, imports and data carry across cells — it builds on its own work.</p></div>
+          <h3>Persistent kernel</h3><p>State persists across cells — variables, imports, intermediate data — so reasoning compounds rather than resetting each turn.</p></div>
         <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 4.3v9L12 21l-7.5-4.7v-9z"/><circle cx="12" cy="12" r="2.4"/><path d="M12 3v6.6M12 21v-6.6M4.7 7.5l5.2 3M14.1 13.5l5.2 3"/></svg></span><span class="idx">02 / 06</span></div>
-          <h3>Scientific rendering</h3><p>See the structure, not a paragraph — proteins, molecules, genomes.</p></div>
+          <h3>Scientific rendering</h3><p>Results materialize as structures, not prose — proteins, molecules and genomes, rendered in place.</p></div>
         <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M12 7.4v4.6M12 12l-5.2 3.8M12 12l5.2 3.8"/></svg></span><span class="idx">03 / 06</span></div>
-          <h3>Agent orchestration</h3><p>A coordinator delegates to specialists and routes their work through a reviewer.</p></div>
+          <h3>Agent orchestration</h3><p>A coordinator decomposes the problem across domain specialists, then reconciles their results through a reviewer.</p></div>
         <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="12" r="2.2"/><path d="M8.2 6.6L15.8 11M8.2 17.4L15.8 13"/></svg></span><span class="idx">04 / 06</span></div>
-          <h3>Provenance</h3><p>Every figure and file links back to the exact cell that produced it.</p></div>
+          <h3>Provenance</h3><p>Every artifact resolves to the exact cell that produced it — inspectable, re-runnable, auditable.</p></div>
         <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M10 3v4M14 3v4"/><rect x="6" y="7" width="12" height="6" rx="2"/><path d="M12 13v4a3 3 0 0 0 3 3h1"/></svg></span><span class="idx">05 / 06</span></div>
-          <h3>Skills &amp; MCP</h3><p>A library of composable skills and MCP tools — new methods on demand.</p></div>
+          <h3>Skills &amp; MCP</h3><p>Composable skills and MCP connectors extend its methods, datasets and instruments on demand.</p></div>
         <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="idx">06 / 06</span></div>
-          <h3>Local &amp; open</h3><p>Runs as a daemon on your hardware. Your data stays yours; the stack is open.</p></div>
+          <h3>Local &amp; open</h3><p>Runs as a daemon on your own hardware — your data never leaves, and the stack is open end to end.</p></div>
       </div>
     </div>
   </section>
@@ -339,15 +339,15 @@
   <section class="band alt" id="code">
     <div class="wrap">
       <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 04 · Availability</span><h2>Clone it, run it, ask it</h2></div>
+        <div class="lhs"><span class="tlabel">// 04 · Availability</span><h2>Local by default, reproducible by design</h2></div>
         <div class="rhs">LICENSE<br>Apache-2.0</div>
       </div>
       <div class="console-grid">
         <div class="anote reveal">
           <span class="tlabel">Open source</span>
-          <h3>One command. Local workspace.</h3>
-          <p>Start the daemon, open the workspace, and talk to it like a colleague who runs every
-            idea. Bring the model you trust; keep the data you own.</p>
+          <h3>One command to a live workspace.</h3>
+          <p>The daemon opens a local workspace you drive directly — every hypothesis executed,
+            not just described. Bring the model you trust; keep the data you own.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="https://github.com/omniscientists" target="_blank" rel="noopener"><span class="star">★</span> Star on GitHub</a>
             <a class="btn btn-ghost" href="https://github.com/omniscientists" target="_blank" rel="noopener">Docs →</a>
@@ -369,8 +369,8 @@
 
   <section class="end">
     <div class="wrap">
-      <h2 class="reveal">Put a lab of AI scientists on your machine.</h2>
-      <p class="reveal">Open-source, local-first, and model-agnostic — built for people who want to see the work.</p>
+      <h2 class="reveal">An autonomous laboratory, on your own hardware.</h2>
+      <p class="reveal">Open-source, local-first, and model-agnostic — for researchers who need to see the work, not just the answer.</p>
       <div class="hero-cta reveal"><a class="btn btn-primary" href="https://github.com/omniscientists" target="_blank" rel="noopener"><span class="star">★</span> Star on GitHub</a></div>
       <div class="sig reveal">omniscientists · github.com/omniscientists · Apache-2.0 · 2026</div>
     </div>
