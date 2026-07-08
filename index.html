@@ -118,6 +118,7 @@
   #viewer{position:absolute; inset:0}
   #viewer canvas{display:block}
   #vfallback{width:100%; height:100%; padding:.6rem}
+  #vortex{position:absolute; inset:0; width:100%; height:100%; display:none}
   .card-foot{position:relative; height:60px; border-top:1px solid var(--line); background:var(--panel)}
   .fslide{position:absolute; inset:0; padding:.62rem .85rem; display:flex; align-items:center; justify-content:space-between; gap:.6rem}
   .fslide .disc{font-family:var(--mono); font-size:.64rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--mint-deep)}
@@ -262,6 +263,7 @@
               </g>
             </svg>
           </div>
+          <canvas id="vortex" aria-hidden="true"></canvas>
         </div>
         <div class="card-foot">
           <div class="fslide" id="foot"><span class="disc">Biology</span><span class="fmeta"><span class="file">hemoglobin.pdb</span><span class="rep">cell[3] · reproducible</span></span></div>
@@ -397,33 +399,106 @@
   // Real molecular structures via 3Dmol.js (loads from the web — works on the live
   // site; a sandboxed preview blocks external scripts and keeps the fallback SVG).
   (function(){
-    var el=document.getElementById('viewer'), foot=document.getElementById('foot');
-    if(!el || !window.$3Dmol) return;
+    var viewerEl=document.getElementById('viewer'), cv=document.getElementById('vortex'), foot=document.getElementById('foot');
     var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    var viewer;
-    try{ viewer=$3Dmol.createViewer(el, {backgroundColor:'white'}); }catch(e){ return; }
-    var fb=document.getElementById('vfallback'); if(fb) fb.parentNode.removeChild(fb);
+    var viewer=null;
+    if(viewerEl && window.$3Dmol){
+      try{ viewer=$3Dmol.createViewer(viewerEl, {backgroundColor:'white'});
+           var fb=document.getElementById('vfallback'); if(fb) fb.parentNode.removeChild(fb); }
+      catch(e){ viewer=null; }
+    }
+    var vortex=makeKarman(cv, reduce);
     var items=[
-      {d:'Biology', f:'hemoglobin.pdb', c:'cell[3]',  q:'pdb:1HHO',    s:function(){viewer.setStyle({},{cartoon:{color:'spectrum'}});}},
-      {d:'Chemistry', f:'caffeine.mol', c:'cell[7]',  q:'cid:2519',    s:function(){viewer.setStyle({},{stick:{radius:0.15},sphere:{scale:0.28}});}},
-      {d:'Medicine', f:'b-dna.pdb',    c:'cell[12]', q:'pdb:1BNA',    s:function(){viewer.setStyle({},{cartoon:{color:'spectrum'},stick:{radius:0.12}});}},
-      {d:'Physics',  f:'fullerene.xyz',c:'cell[5]',  q:'cid:123591',  s:function(){viewer.setStyle({},{sphere:{scale:0.32},stick:{radius:0.14,color:'0x15C48E'}});}}
+      {d:'Biology',   f:'hemoglobin.pdb',    c:'cell[3]',  q:'pdb:1HHO', s:function(){viewer.setStyle({},{cartoon:{color:'spectrum'}});}},
+      {d:'Chemistry', f:'caffeine.mol',      c:'cell[7]',  q:'cid:2519', s:function(){viewer.setStyle({},{stick:{radius:0.15},sphere:{scale:0.28}});}},
+      {d:'Medicine',  f:'b-dna.pdb',         c:'cell[12]', q:'pdb:1BNA', s:function(){viewer.setStyle({},{cartoon:{color:'spectrum'},stick:{radius:0.12}});}},
+      {d:'Physics',   f:'karman-street.sim', c:'cell[5]',  sim:true}
     ];
     function setFoot(it){ if(foot) foot.innerHTML='<span class="disc">'+it.d+'</span><span class="fmeta"><span class="file">'+it.f+'</span><span class="rep">'+it.c+' · reproducible</span></span>'; }
     var i=0;
     function show(){
       var it=items[i]; setFoot(it);
-      try{
-        viewer.removeAllModels();
-        $3Dmol.download(it.q, viewer, {}, function(){
-          try{ it.s(); viewer.resize(); viewer.zoomTo(); viewer.render(); if(!reduce) viewer.spin('y',1.2); }catch(e){}
-        });
-      }catch(e){}
+      if(it.sim){
+        if(viewerEl) viewerEl.style.display='none';
+        if(cv){ cv.style.display='block'; vortex.start(); }
+      } else {
+        if(cv) cv.style.display='none';
+        vortex.stop();
+        if(viewerEl) viewerEl.style.display='';
+        if(viewer){
+          try{ viewer.removeAllModels();
+            $3Dmol.download(it.q, viewer, {}, function(){ try{ it.s(); viewer.resize(); viewer.zoomTo(); viewer.render(); if(!reduce) viewer.spin('y',1.2); }catch(e){} });
+          }catch(e){}
+        }
+      }
     }
     show();
-    if(!reduce) setInterval(function(){ i=(i+1)%items.length; show(); }, 6500);
-    window.addEventListener('resize', function(){ try{ viewer.resize(); }catch(e){} });
+    if(!reduce) setInterval(function(){ i=(i+1)%items.length; show(); }, 6800);
+    window.addEventListener('resize', function(){ try{ if(viewer) viewer.resize(); }catch(e){} vortex.fit(); });
   })();
+
+  // Kármán vortex street — self-contained canvas fluid sim (potential flow past a
+  // cylinder + alternately-shed vortices; tracer particles streak, coloured by speed).
+  function makeKarman(cv, reduce){
+    if(!cv || !cv.getContext) return {start:function(){},stop:function(){},fit:function(){}};
+    var ctx=cv.getContext('2d'), W=1,H=1,DPR=1,parts=[],vorts=[],raf=0,running=false,shed=0,side=1;
+    var cx,cy,a,U0,Uc,g,core2;
+    function fit(){
+      DPR=Math.min(window.devicePixelRatio||1,2);
+      var r=cv.getBoundingClientRect(); W=Math.max(1,r.width); H=Math.max(1,r.height);
+      cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0);
+      cx=0.22*W; cy=0.52*H; a=Math.max(9,0.105*H);
+      U0=0.0046*W; Uc=0.8*U0; g=1.25*U0*a; core2=(0.24*a)*(0.24*a);
+      seed();
+    }
+    function seed(){
+      var N=Math.max(480,Math.min(1400,Math.floor(W*H/340))), k;
+      parts=[]; for(k=0;k<N;k++) parts.push({x:Math.random()*W,y:Math.random()*H,px:0,py:0});
+      vorts=[]; shed=0; side=1;
+    }
+    function vel(x,y){
+      var dx=x-cx, dy=y-cy, r2=dx*dx+dy*dy;
+      if(r2 < a*a*1.02) return null;
+      var a2=a*a, r4=r2*r2, u=U0*(1-a2*(dx*dx-dy*dy)/r4), v=U0*(-a2*2*dx*dy/r4), j,vo,ex,ey,er2,fm;
+      for(j=0;j<vorts.length;j++){ vo=vorts[j]; ex=x-vo.x; ey=y-vo.y; er2=ex*ex+ey*ey+core2; fm=vo.g/er2; u+=-ey*fm; v+=ex*fm; }
+      return [u,v];
+    }
+    function step(){
+      var Tsh=Math.max(7,Math.round((3.4*a)/Uc)), j,k,p,vv;
+      if(shed<=0){ vorts.push({x:cx+a*0.85, y:cy-side*a*0.9, g:side*g}); side=-side; shed=Tsh; }
+      shed--;
+      for(j=vorts.length-1;j>=0;j--){ vorts[j].x+=Uc; if(vorts[j].x>W+2.5*a) vorts.splice(j,1); }
+      for(k=0;k<parts.length;k++){ p=parts[k]; vv=vel(p.x,p.y); p.px=p.x; p.py=p.y;
+        if(!vv){ p.x=Math.random()*5; p.y=Math.random()*H; p.px=p.x; p.py=p.y; continue; }
+        p.x+=vv[0]; p.y+=vv[1];
+        if(p.x>W||p.y<-6||p.y>H+6){ p.x=Math.random()*6; p.y=Math.random()*H; p.px=p.x; p.py=p.y; }
+      }
+    }
+    function lerp(A,B,t){ return [(A[0]+(B[0]-A[0])*t)|0,(A[1]+(B[1]-A[1])*t)|0,(A[2]+(B[2]-A[2])*t)|0]; }
+    function draw(){
+      ctx.fillStyle='rgba(246,252,250,0.20)'; ctx.fillRect(0,0,W,H);
+      ctx.lineWidth=1.15; ctx.lineCap='round';
+      var k,p,sdx,sdy,sp,tt,c;
+      for(k=0;k<parts.length;k++){ p=parts[k]; sdx=p.x-p.px; sdy=p.y-p.py; sp=Math.sqrt(sdx*sdx+sdy*sdy);
+        tt=Math.min(1,sp/(U0*2.3));
+        c = tt<0.5 ? lerp([190,238,216],[21,196,142],tt*2) : lerp([21,196,142],[10,140,100],(tt-0.5)*2);
+        ctx.strokeStyle='rgba('+c[0]+','+c[1]+','+c[2]+',0.92)';
+        ctx.beginPath(); ctx.moveTo(p.px,p.py); ctx.lineTo(p.x,p.y); ctx.stroke();
+      }
+      ctx.beginPath(); ctx.arc(cx,cy,a,0,6.2832); ctx.fillStyle='#F6FCFA'; ctx.fill();
+      ctx.lineWidth=2.2; ctx.strokeStyle='#0A3327'; ctx.stroke();
+    }
+    function loop(){ if(!running) return; step(); draw(); raf=requestAnimationFrame(loop); }
+    function start(){
+      if(running) return;
+      if(W<=1 || cv.getBoundingClientRect().width>2 && Math.abs(cv.getBoundingClientRect().width-W)>2) fit();
+      if(reduce){ ctx.fillStyle='#F6FCFA'; ctx.fillRect(0,0,W,H); for(var n=0;n<170;n++) step(); draw(); return; }
+      running=true; raf=requestAnimationFrame(loop);
+    }
+    function stop(){ running=false; if(raf) cancelAnimationFrame(raf); raf=0; }
+    fit();
+    return {start:start, stop:stop, fit:fit};
+  }
 </script>
 <script>
   (function(){
