@@ -81,7 +81,7 @@
     -webkit-mask-image:radial-gradient(70% 70% at 72% 30%,#000,transparent 78%);
     mask-image:radial-gradient(70% 70% at 72% 30%,#000,transparent 78%)}
   .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr 1.04fr; gap:clamp(1.75rem,4.5vw,3.4rem);
-    align-items:center; padding:clamp(3rem,7vw,5.25rem) 0 clamp(2.75rem,5vw,4.25rem)}
+    align-items:center; padding-top:clamp(3rem,7vw,5.25rem); padding-bottom:clamp(2.75rem,5vw,4.25rem)}
   @media (max-width:920px){.hero-grid{grid-template-columns:1fr; gap:2.5rem}}
   .kicker{display:flex; align-items:center; gap:.6rem; flex-wrap:wrap; margin-bottom:1.1rem}
   .kicker .bar{width:26px; height:2px; background:var(--mint)}
@@ -199,7 +199,7 @@
 
   @media (max-width:640px){
     .band{padding:2.6rem 0}
-    .hero-grid{padding:1.5rem 0 1.3rem; gap:1.85rem}
+    .hero-grid{padding-top:1.5rem; padding-bottom:1.3rem; gap:1.85rem}
     .kicker{margin-bottom:.8rem}
     .hero h1{font-size:clamp(1.9rem,8vw,2.5rem)}
     .hero .lead{font-size:1rem; margin-top:1rem; line-height:1.5}
@@ -264,7 +264,7 @@
       </div>
 
       <!-- LIVE ARTIFACT — big, cycles biology / chemistry / medicine / physics -->
-      <figure class="card hud reveal" style="margin:0 0 0 auto" aria-label="Live artifact panel cycling through disciplines">
+      <figure class="card hud reveal" aria-label="Live artifact panel cycling through disciplines">
         <div class="card-bar">
           <span class="tl" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="cid">artifact · live</span>
