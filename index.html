@@ -420,6 +420,19 @@
       {d:'Medicine',  f:'b-dna.pdb',         c:'cell[12]', q:'pdb:1BNA', s:function(){viewer.setStyle({},{cartoon:{color:'spectrum'},stick:{radius:0.12}});}},
       {d:'Physics',   f:'karman-street.sim', c:'cell[5]',  sim:true}
     ];
+    var cache={};
+    function applyStyle(it){ try{ it.s(); viewer.resize(); viewer.zoomTo(); viewer.render(); if(!reduce) viewer.spin('y',1.2); }catch(e){} }
+    function preload(){
+      for(var n=0;n<items.length;n++){ (function(it){
+        if(!it.q) return;
+        var url,fmt;
+        if(it.q.indexOf('pdb:')===0){ url='https://files.rcsb.org/download/'+it.q.slice(4)+'.pdb'; fmt='pdb'; }
+        else if(it.q.indexOf('cid:')===0){ url='https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/'+it.q.slice(4)+'/record/SDF?record_type=3d'; fmt='sdf'; }
+        else return;
+        fetch(url).then(function(r){ return r.ok ? r.text() : null; }).then(function(t){ if(t) cache[it.q]={data:t,fmt:fmt}; }).catch(function(){});
+      })(items[n]); }
+    }
+    if(viewer && window.fetch) preload();
     function setFoot(it){ if(foot) foot.innerHTML='<span class="disc">'+it.d+'</span><span class="fmeta"><span class="file">'+it.f+'</span><span class="rep">'+it.c+' · reproducible</span></span>'; }
     var i=0;
     function show(){
@@ -432,8 +445,10 @@
         vortex.stop();
         if(viewerEl) viewerEl.style.display='';
         if(viewer){
+          var cd=cache[it.q];
           try{ viewer.removeAllModels();
-            $3Dmol.download(it.q, viewer, {}, function(){ try{ it.s(); viewer.resize(); viewer.zoomTo(); viewer.render(); if(!reduce) viewer.spin('y',1.2); }catch(e){} });
+            if(cd){ viewer.addModel(cd.data, cd.fmt); applyStyle(it); }
+            else { $3Dmol.download(it.q, viewer, {}, function(){ applyStyle(it); }); }
           }catch(e){}
         }
       }
