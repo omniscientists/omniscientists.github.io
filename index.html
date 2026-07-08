@@ -31,7 +31,7 @@
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  body{margin:0; overflow-x:clip; background:var(--bg); color:var(--ink); font-family:var(--sans);
     font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
   .wrap{max-width:1120px; margin:0 auto; padding:0 clamp(1.15rem,4vw,2rem)}
   a{color:inherit; text-decoration:none}
@@ -197,6 +197,26 @@
   .foot-links a:hover{color:var(--mint-deep)}
   .foot-note{font-family:var(--mono); font-size:.72rem; color:var(--faint)}
 
+  @media (max-width:640px){
+    .band{padding:2.6rem 0}
+    .hero-grid{padding:2rem 0 1.6rem}
+    .kicker{margin-bottom:.85rem}
+    .hero h1{font-size:clamp(2rem,8.6vw,2.7rem)}
+    .hero .lead{font-size:1.02rem; margin-top:1.1rem}
+    .stage{min-height:224px}
+    .card{max-width:100%}
+    .card-foot{height:56px}
+    .sechead{flex-direction:column; align-items:flex-start; gap:.4rem; padding-bottom:.85rem; margin-bottom:1.35rem}
+    .sechead .rhs{display:none}
+    .modules{gap:.75rem}
+    .module{padding:1.2rem 1.15rem 1.3rem}
+    .out{padding:1rem .7rem .9rem}
+    .console pre{font-size:.75rem}
+    .anote h3{font-size:1.3rem}
+    .end h2{font-size:clamp(1.6rem,6.5vw,2.15rem)}
+    .nav-in{height:58px}
+    .brand{font-size:.9rem}
+  }
   .js .reveal{opacity:0; transform:translateY(14px)}
   .js .reveal.in{opacity:1; transform:none; transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
   @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1!important; transform:none!important}}
