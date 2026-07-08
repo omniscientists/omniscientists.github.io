@@ -113,8 +113,9 @@
     mask-image:radial-gradient(80% 80% at 50% 50%,#000,transparent 92%)}
   .slide{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:.35rem .45rem}
   .slide svg{width:100%; height:100%}
-  #viewer{position:absolute; inset:0; pointer-events:none}
-  #viewer canvas{display:block; pointer-events:none}
+  #viewer{position:absolute; inset:0; touch-action:pan-y; cursor:grab}
+  #viewer:active{cursor:grabbing}
+  #viewer canvas{display:block; touch-action:pan-y}
   #vfallback{width:100%; height:100%; padding:.6rem}
   #vortex{position:absolute; inset:0; width:100%; height:100%; display:none}
   .card-foot{position:relative; height:60px; border-top:1px solid var(--line); background:var(--panel)}
@@ -215,7 +216,7 @@
       omniscientists
     </a>
     <div class="nav-right">
-      <span class="status"><i></i>system online · v1.0</span>
+      <span class="status"><i></i>in development · v0.0</span>
       <a class="btn btn-primary btn-sm" href="https://github.com/omniscientists" target="_blank" rel="noopener"><span class="star">★</span> GitHub</a>
     </div>
   </div>
@@ -404,6 +405,13 @@
       try{ viewer=$3Dmol.createViewer(viewerEl, {backgroundColor:'white'});
            var fb=document.getElementById('vfallback'); if(fb) fb.parentNode.removeChild(fb); }
       catch(e){ viewer=null; }
+    }
+    if(viewer && viewerEl){
+      // drag to rotate, but keep the wheel scrolling the page (no zoom hijack)
+      var host=viewerEl.parentNode || viewerEl;
+      host.addEventListener('wheel', function(e){ e.stopPropagation(); }, {capture:true, passive:true});
+      viewerEl.addEventListener('mouseenter', function(){ try{ viewer.spin(false); }catch(e){} });
+      viewerEl.addEventListener('mouseleave', function(){ if(!reduce){ try{ viewer.spin('y',1.2); }catch(e){} } });
     }
     var vortex=makeKarman(cv, reduce);
     var items=[
