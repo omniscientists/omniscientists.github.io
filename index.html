@@ -312,7 +312,7 @@
           specialists. They write and run real code in a persistent kernel, render the result, and
           trace every figure back to the cell that produced it.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
+          <a class="btn btn-primary" href="#workbench">View workbench</a>
           <a class="btn btn-ghost" href="#code">Get started →</a>
         </div>
         <div class="hero-meta">
@@ -356,53 +356,11 @@
     </div>
   </section>
 
-  <!-- 01 CAPABILITIES -->
-  <section class="band" id="capabilities">
-    <div class="wrap">
-      <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 01 · Capabilities</span><h2>The anatomy of a computational scientist</h2></div>
-        <div class="rhs">MODULES 06<br>STATUS ▸ active</div>
-      </div>
-      <div class="modules">
-        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/></svg></span><span class="idx">01 / 06</span></div>
-          <h3>Persistent kernel</h3><p>State persists across cells — variables, imports, intermediate data — so reasoning compounds rather than resetting each turn.</p></div>
-        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 4.3v9L12 21l-7.5-4.7v-9z"/><circle cx="12" cy="12" r="2.4"/><path d="M12 3v6.6M12 21v-6.6M4.7 7.5l5.2 3M14.1 13.5l5.2 3"/></svg></span><span class="idx">02 / 06</span></div>
-          <h3>Scientific rendering</h3><p>Results materialize as structures, not prose — proteins, molecules and genomes, rendered in place.</p></div>
-        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M12 7.4v4.6M12 12l-5.2 3.8M12 12l5.2 3.8"/></svg></span><span class="idx">03 / 06</span></div>
-          <h3>Agent orchestration</h3><p>A coordinator decomposes the problem across domain specialists, then reconciles their results through a reviewer.</p></div>
-        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="12" r="2.2"/><path d="M8.2 6.6L15.8 11M8.2 17.4L15.8 13"/></svg></span><span class="idx">04 / 06</span></div>
-          <h3>Provenance</h3><p>Every artifact resolves to the exact cell that produced it — inspectable, re-runnable, auditable.</p></div>
-        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M10 3v4M14 3v4"/><rect x="6" y="7" width="12" height="6" rx="2"/><path d="M12 13v4a3 3 0 0 0 3 3h1"/></svg></span><span class="idx">05 / 06</span></div>
-          <h3>Skills &amp; MCP</h3><p>Composable skills and MCP connectors extend its methods, datasets and instruments on demand.</p></div>
-        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="idx">06 / 06</span></div>
-          <h3>Local &amp; open</h3><p>Runs as a daemon on your own hardware — your data never leaves, and the stack is open end to end.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 OUTPUTS -->
-  <section class="band alt" id="outputs">
-    <div class="wrap">
-      <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 02 · Outputs</span><h2>First-class scientific artifacts</h2></div>
-        <div class="rhs">FORMATS 06<br>each ▸ traced</div>
-      </div>
-      <div class="outs reveal">
-        <div class="out hud"><svg viewBox="0 0 40 40"><path d="M8 12c6 4 6 12 0 16M8 12c6-4 18-4 24 0M32 12c-6 4-6 12 0 16M32 28c-6 4-18 4-24 0"/><path d="M12 15h4M16 20h8M18 25h4" stroke="#15C48E"/></svg><div class="on">Protein</div><div class="ox">.pdb</div></div>
-        <div class="out hud"><svg viewBox="0 0 40 40"><polygon points="26,10 32,20 26,30 14,30 8,20 14,10"/><circle cx="26" cy="10" r="3" fill="#15C48E" stroke="none"/><circle cx="8" cy="20" r="3" fill="currentColor" stroke="none"/></svg><div class="on">Molecule</div><div class="ox">SMILES</div></div>
-        <div class="out hud"><svg viewBox="0 0 40 40"><path d="M6 14h28M6 20h28M6 26h28"/><rect x="12" y="11.5" width="8" height="5" fill="#15C48E" stroke="none"/><rect x="22" y="17.5" width="10" height="5" fill="currentColor" stroke="none" opacity=".5"/><rect x="9" y="23.5" width="7" height="5" fill="#15C48E" stroke="none"/></svg><div class="on">Genome</div><div class="ox">.vcf</div></div>
-        <div class="out hud"><svg viewBox="0 0 40 40"><path d="M8 30V10M8 30h24"/><path d="M12 26l6-7 5 4 6-11" stroke="#15C48E" stroke-width="2"/></svg><div class="on">Figure</div><div class="ox">.png</div></div>
-        <div class="out hud"><svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" rx="3"/><path d="M13 15h6M13 20h14M13 25h10" stroke="#15C48E"/></svg><div class="on">Notebook</div><div class="ox">.ipynb</div></div>
-        <div class="out hud"><svg viewBox="0 0 40 40"><rect x="7" y="9" width="26" height="22" rx="2"/><path d="M7 16h26M17 9v22M25 9v22"/><rect x="7.5" y="9.5" width="9" height="6" fill="#15C48E" stroke="none"/></svg><div class="on">Table</div><div class="ox">.csv</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 WORKBENCH -->
+  <!-- 01 WORKBENCH -->
   <section class="band" id="workbench">
     <div class="wrap">
       <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 03 · Workbench</span><h2>A research interface, not a chat transcript</h2></div>
+        <div class="lhs"><span class="tlabel">// 01 · Workbench</span><h2>A research interface, not a chat transcript</h2></div>
         <div class="rhs">TRACE<br>cell-level</div>
       </div>
       <div class="instrument reveal" aria-label="Research workbench preview">
@@ -461,6 +419,48 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 CAPABILITIES -->
+  <section class="band" id="capabilities">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <div class="lhs"><span class="tlabel">// 02 · Capabilities</span><h2>The anatomy of a computational scientist</h2></div>
+        <div class="rhs">MODULES 06<br>STATUS ▸ active</div>
+      </div>
+      <div class="modules">
+        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M7 9l3 3-3 3"/><path d="M13 15h4"/></svg></span><span class="idx">01 / 06</span></div>
+          <h3>Persistent kernel</h3><p>State persists across cells — variables, imports, intermediate data — so reasoning compounds rather than resetting each turn.</p></div>
+        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l7.5 4.3v9L12 21l-7.5-4.7v-9z"/><circle cx="12" cy="12" r="2.4"/><path d="M12 3v6.6M12 21v-6.6M4.7 7.5l5.2 3M14.1 13.5l5.2 3"/></svg></span><span class="idx">02 / 06</span></div>
+          <h3>Scientific rendering</h3><p>Results materialize as structures, not prose — proteins, molecules and genomes, rendered in place.</p></div>
+        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M12 7.4v4.6M12 12l-5.2 3.8M12 12l5.2 3.8"/></svg></span><span class="idx">03 / 06</span></div>
+          <h3>Agent orchestration</h3><p>A coordinator decomposes the problem across domain specialists, then reconciles their results through a reviewer.</p></div>
+        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.2"/><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="12" r="2.2"/><path d="M8.2 6.6L15.8 11M8.2 17.4L15.8 13"/></svg></span><span class="idx">04 / 06</span></div>
+          <h3>Provenance</h3><p>Every artifact resolves to the exact cell that produced it — inspectable, re-runnable, auditable.</p></div>
+        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M10 3v4M14 3v4"/><rect x="6" y="7" width="12" height="6" rx="2"/><path d="M12 13v4a3 3 0 0 0 3 3h1"/></svg></span><span class="idx">05 / 06</span></div>
+          <h3>Skills &amp; MCP</h3><p>Composable skills and MCP connectors extend its methods, datasets and instruments on demand.</p></div>
+        <div class="module hud reveal"><div class="top"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/><rect x="10" y="13" width="4" height="6"/></svg></span><span class="idx">06 / 06</span></div>
+          <h3>Local &amp; open</h3><p>Runs as a daemon on your own hardware — your data never leaves, and the stack is open end to end.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 OUTPUTS -->
+  <section class="band alt" id="outputs">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <div class="lhs"><span class="tlabel">// 03 · Outputs</span><h2>First-class scientific artifacts</h2></div>
+        <div class="rhs">FORMATS 06<br>each ▸ traced</div>
+      </div>
+      <div class="outs reveal">
+        <div class="out hud"><svg viewBox="0 0 40 40"><path d="M8 12c6 4 6 12 0 16M8 12c6-4 18-4 24 0M32 12c-6 4-6 12 0 16M32 28c-6 4-18 4-24 0"/><path d="M12 15h4M16 20h8M18 25h4" stroke="#15C48E"/></svg><div class="on">Protein</div><div class="ox">.pdb</div></div>
+        <div class="out hud"><svg viewBox="0 0 40 40"><polygon points="26,10 32,20 26,30 14,30 8,20 14,10"/><circle cx="26" cy="10" r="3" fill="#15C48E" stroke="none"/><circle cx="8" cy="20" r="3" fill="currentColor" stroke="none"/></svg><div class="on">Molecule</div><div class="ox">SMILES</div></div>
+        <div class="out hud"><svg viewBox="0 0 40 40"><path d="M6 14h28M6 20h28M6 26h28"/><rect x="12" y="11.5" width="8" height="5" fill="#15C48E" stroke="none"/><rect x="22" y="17.5" width="10" height="5" fill="currentColor" stroke="none" opacity=".5"/><rect x="9" y="23.5" width="7" height="5" fill="#15C48E" stroke="none"/></svg><div class="on">Genome</div><div class="ox">.vcf</div></div>
+        <div class="out hud"><svg viewBox="0 0 40 40"><path d="M8 30V10M8 30h24"/><path d="M12 26l6-7 5 4 6-11" stroke="#15C48E" stroke-width="2"/></svg><div class="on">Figure</div><div class="ox">.png</div></div>
+        <div class="out hud"><svg viewBox="0 0 40 40"><rect x="8" y="8" width="24" height="24" rx="3"/><path d="M13 15h6M13 20h14M13 25h10" stroke="#15C48E"/></svg><div class="on">Notebook</div><div class="ox">.ipynb</div></div>
+        <div class="out hud"><svg viewBox="0 0 40 40"><rect x="7" y="9" width="26" height="22" rx="2"/><path d="M7 16h26M17 9v22M25 9v22"/><rect x="7.5" y="9.5" width="9" height="6" fill="#15C48E" stroke="none"/></svg><div class="on">Table</div><div class="ox">.csv</div></div>
       </div>
     </div>
   </section>
@@ -533,8 +533,8 @@
       omniscientists
     </a>
     <div class="foot-links">
-      <a href="#capabilities">Capabilities</a>
       <a href="#workbench">Workbench</a>
+      <a href="#capabilities">Capabilities</a>
       <a href="#workflow">Workflow</a>
       <a href="https://github.com/omniscientists" target="_blank" rel="noopener">GitHub</a>
     </div>
