@@ -444,7 +444,7 @@
             <div class="demo-brand"><strong>Research session</strong><span>gui-local · live preview</span></div>
             <section class="demo-side-section">
               <h3>Sessions</h3>
-              <button class="demo-session" type="button"><span data-demo-session>EGFR pocket analysis</span><small>approval pending · 4 frames</small></button>
+              <button class="demo-session" type="button"><span data-demo-session>EGFR inhibitor pocket</span><small>approval pending · 4 frames</small></button>
             </section>
             <section class="demo-side-section">
               <h3>Agent</h3>
@@ -464,8 +464,8 @@
             <section class="demo-pane demo-conversation" aria-labelledby="demo-conversation-title">
               <header class="demo-pane-head"><h3 id="demo-conversation-title">Conversation</h3><span data-demo-frame>frame a13f</span></header>
               <div class="demo-timeline">
-                <div class="demo-bubble demo-user" data-demo-prompt>Compare EGFR L858R binding-pocket geometry against a candidate inhibitor and generate a reproducible figure.</div>
-                <div class="demo-bubble demo-assistant" data-demo-reply>I will route structure loading, pocket selection, rendering, and review through a persistent kernel.</div>
+                <div class="demo-bubble demo-user" data-demo-prompt>Reproduce an EGFR kinase inhibitor-binding pocket analysis from PDB 1M17, identify contact residues, and export a traced figure.</div>
+                <div class="demo-bubble demo-assistant" data-demo-reply>I will route structure loading, pocket selection, contact mapping, rendering, and review through a persistent kernel.</div>
                 <div class="demo-tool-row">
                   <span class="demo-tool active" data-demo-tool="0">run_python <code>cell[5]</code></span>
                   <span class="demo-tool" data-demo-tool="1">run_python <code>cell[6]</code></span>
@@ -474,12 +474,12 @@
                 </div>
               </div>
               <div class="demo-examples" aria-label="Example prompts">
-                <button class="demo-example active" type="button" data-example="protein">Protein</button>
+                <button class="demo-example active" type="button" data-example="drug">Drug target</button>
                 <button class="demo-example" type="button" data-example="genome">Genome</button>
                 <button class="demo-example" type="button" data-example="material">Material</button>
               </div>
               <div class="demo-composer">
-                <div class="demo-prompt" data-demo-input>analyze 1M17 and render the binding pocket</div>
+                <div class="demo-prompt" data-demo-input>reproduce EGFR inhibitor-pocket contacts from PDB 1M17</div>
                 <button class="demo-run" type="button" data-demo-run>Run example</button>
               </div>
             </section>
@@ -495,7 +495,7 @@
               </header>
               <div class="demo-tab-panel active" data-panel="artifact">
                 <div class="demo-artifact-card">
-                  <div class="demo-artifact-title"><strong data-demo-artifact-name>binding-pocket.png</strong><span data-demo-artifact-type>image/png</span></div>
+                  <div class="demo-artifact-title"><strong data-demo-artifact-name>egfr-pocket-contact-map.png</strong><span data-demo-artifact-type>image/png</span></div>
                   <div class="demo-viz">
                     <div class="demo-structure" aria-hidden="true" data-demo-viz>
                       <svg viewBox="0 0 210 170" fill="none">
@@ -517,12 +517,13 @@
               <div class="demo-tab-panel" data-panel="notebook">
                 <pre class="demo-code" data-demo-code>In [5]:
 structure = load_structure("1M17")
-pocket = select_binding_pocket(structure, mutation="L858R")
-render_pocket(pocket, ligand="candidate-A")</pre>
+pocket = select_inhibitor_pocket(structure)
+contacts = map_ligand_contacts(pocket)
+render_contact_map(pocket, contacts)</pre>
               </div>
               <div class="demo-tab-panel" data-panel="report">
                 <div class="demo-report">
-                  <div class="demo-report-row"><strong data-demo-report-title>EGFR L858R pocket report</strong><span data-demo-report-copy>Hydrophobic pocket geometry and ligand contact map are traced to cell[7].</span></div>
+                  <div class="demo-report-row"><strong data-demo-report-title>EGFR inhibitor-pocket report</strong><span data-demo-report-copy>Contact residues, pocket geometry, and rendered figure are traced to cell[7].</span></div>
                   <div class="demo-report-row"><strong>Provenance</strong><span data-demo-report-prov>cells 5-7 · reviewer cleared · reproducible artifact bundle</span></div>
                 </div>
               </div>
@@ -806,23 +807,23 @@ render_pocket(pocket, ligand="candidate-A")</pre>
     var demo=document.getElementById('demo');
     if(!demo) return;
     var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    var timers=[], active='protein';
+    var timers=[], active='drug';
     var examples={
-      protein:{
-        session:'EGFR pocket analysis',
+      drug:{
+        session:'EGFR inhibitor pocket',
         agent:'Operon coordinator',
         frame:'frame a13f',
-        input:'analyze 1M17 and render the binding pocket',
-        prompt:'Compare EGFR L858R binding-pocket geometry against a candidate inhibitor and generate a reproducible figure.',
-        reply:'I will route structure loading, pocket selection, rendering, and review through a persistent kernel.',
-        artifact:'binding-pocket.png',
+        input:'reproduce EGFR inhibitor-pocket contacts from PDB 1M17',
+        prompt:'Reproduce an EGFR kinase inhibitor-binding pocket analysis from PDB 1M17, identify contact residues, and export a traced figure.',
+        reply:'I will route structure loading, pocket selection, contact mapping, rendering, and review through a persistent kernel.',
+        artifact:'egfr-pocket-contact-map.png',
         type:'image/png',
-        code:'In [5]:\nstructure = load_structure("1M17")\npocket = select_binding_pocket(structure, mutation="L858R")\nrender_pocket(pocket, ligand="candidate-A")',
-        report:'EGFR L858R pocket report',
-        copy:'Hydrophobic pocket geometry and ligand contact map are traced to cell[7].',
+        code:'In [5]:\nstructure = load_structure("1M17")\npocket = select_inhibitor_pocket(structure)\ncontacts = map_ligand_contacts(pocket)\nrender_contact_map(pocket, contacts)',
+        report:'EGFR inhibitor-pocket report',
+        copy:'Contact residues, pocket geometry, and rendered figure are traced to cell[7].',
         prov:'cells 5-7 · reviewer cleared · reproducible artifact bundle',
-        steps:['Load structure and residue metadata','Select pocket and compute contacts','Render artifact with provenance','Review schema and export bundle'],
-        logs:['fetch pdb 1M17 from local cache','parse chains and mutation annotations','compute 18 pocket contacts','render binding-pocket.png','review cleared: schema + provenance']
+        steps:['Load PDB 1M17 and ligand metadata','Select inhibitor-binding pocket','Map ligand-contact residues','Review figure and notebook provenance'],
+        logs:['fetch pdb 1M17 from local cache','parse kinase domain and ligand records','map inhibitor-contact residues','render egfr-pocket-contact-map.png','review cleared: figure + provenance']
       },
       genome:{
         session:'Variant interpretation',
