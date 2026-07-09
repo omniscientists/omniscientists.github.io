@@ -22,7 +22,7 @@
     --ink:#0B1F17; --muted:#4A635A;
     --faint:#83988E; --line:#E4EDE8; --line-2:#CFE6DC;
     --mint:#15C48E; --mint-deep:#0C9E70; --mint-tint:#E6F7EF; --mint-glow:#C3F0DC;
-    --pine:#0A3327; --amber:#E0A233;
+    --pine:#0A3327; --amber:#D88A24; --blue:#2F64D6; --blue-tint:#EEF4FF;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,system-ui,Arial,sans-serif;
     --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
     --shadow:0 1px 2px rgba(10,35,25,.05), 0 16px 36px -22px rgba(10,35,25,.22);
@@ -57,6 +57,7 @@
   .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line-2)}
   .btn-ghost:hover{border-color:var(--mint); background:var(--mint-tint); color:var(--mint-deep)}
   .btn-sm{padding:.46rem .8rem; font-size:.85rem}
+  .star{font-size:.95em}
 
   /* nav */
   .nav{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.82);
@@ -91,6 +92,15 @@
   .hero-meta{margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:.4rem .85rem; font-family:var(--mono); font-size:.74rem; color:var(--faint)}
   .hero-meta span{display:inline-flex; align-items:center; gap:.4rem}
   .hero-meta i{width:6px; height:6px; border-radius:50%; background:var(--mint); flex:none}
+  .hero-signals{position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    margin-top:calc(-1 * clamp(1.2rem,2vw,1.7rem)); margin-bottom:clamp(1.4rem,3vw,2.3rem);
+    border:1px solid var(--line); border-radius:12px; overflow:hidden; background:rgba(255,255,255,.86);
+    box-shadow:0 12px 34px -28px rgba(10,35,25,.28)}
+  .signal{min-width:0; padding:.88rem 1rem; border-right:1px solid var(--line)}
+  .signal:last-child{border-right:0}
+  .signal span{display:block; font-family:var(--mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint)}
+  .signal strong{display:block; margin-top:.22rem; font-size:.92rem; line-height:1.2}
+  .signal em{display:block; margin-top:.18rem; color:var(--muted); font-family:var(--mono); font-size:.68rem; font-style:normal}
 
   /* live artifact card (big, fully visible, cycles disciplines) */
   .card{background:var(--surface); border:1px solid var(--line); border-radius:16px; overflow:hidden; box-shadow:var(--shadow); max-width:500px; margin-left:auto}
@@ -171,6 +181,51 @@
   .flow{min-width:660px; max-width:940px; margin:0 auto}
   .flow svg{width:100%; height:auto; display:block; fill:none}
 
+  /* research workbench */
+  .instrument{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface); box-shadow:var(--shadow)}
+  .instrument-top{display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+    padding:.8rem 1rem; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,var(--panel))}
+  .chipline{display:flex; flex-wrap:wrap; gap:.4rem}
+  .chipline span{font-family:var(--mono); font-size:.62rem; color:var(--muted); border:1px solid var(--line-2); border-radius:4px; padding:.18rem .42rem; background:#fff}
+  .instrument-grid{display:grid; grid-template-columns:1.05fr .9fr 1.05fr; min-height:360px}
+  .toolpane{min-width:0; padding:1rem; border-right:1px solid var(--line); background:#fff}
+  .toolpane:last-child{border-right:0}
+  .toolhead{display:flex; align-items:center; justify-content:space-between; gap:.7rem; margin-bottom:.85rem}
+  .toolhead h3{font-size:.88rem; font-weight:750; letter-spacing:0}
+  .toolhead span{font-family:var(--mono); font-size:.62rem; color:var(--faint)}
+  .prompt-box{display:grid; gap:.75rem; padding:1rem; border:1px solid var(--line); border-radius:8px; background:var(--blue-tint)}
+  .prompt-line{display:grid; grid-template-columns:auto minmax(0,1fr); gap:.55rem; align-items:start; font-family:var(--mono); font-size:.82rem; line-height:1.55}
+  .prompt-line b{color:var(--blue); font-weight:700}
+  .route-list{display:grid; gap:.55rem}
+  .route{display:grid; grid-template-columns:70px minmax(0,1fr); gap:.65rem; align-items:start; padding:.55rem 0; border-top:1px solid rgba(47,100,214,.14)}
+  .route span{font-family:var(--mono); font-size:.62rem; color:var(--blue)}
+  .route strong{font-size:.8rem; line-height:1.3}
+  .trace-list{display:grid; gap:.6rem}
+  .trace-row{display:grid; grid-template-columns:58px minmax(0,1fr); gap:.7rem; padding:.65rem .7rem; border:1px solid var(--line); border-radius:7px; background:#fff}
+  .trace-row.active{border-color:var(--line-2); background:var(--mint-tint)}
+  .trace-row span{font-family:var(--mono); font-size:.62rem; color:var(--mint-deep)}
+  .trace-row strong{display:block; font-size:.82rem; line-height:1.25}
+  .trace-row em{display:block; margin-top:.15rem; color:var(--faint); font-family:var(--mono); font-size:.62rem; font-style:normal}
+  .artifact-screen{border:1px solid var(--line); border-radius:8px; overflow:hidden; background:linear-gradient(180deg,#fff,var(--panel))}
+  .artifact-toolbar{display:flex; align-items:center; justify-content:space-between; gap:.7rem; padding:.56rem .7rem; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:.62rem; color:var(--muted)}
+  .artifact-viz{display:grid; grid-template-columns:1fr .75fr; gap:.75rem; padding:.8rem}
+  .mini-structure{min-height:172px; border:1px solid var(--line); border-radius:7px; display:grid; place-items:center; background:#fff}
+  .mini-structure svg{width:92%; height:auto; display:block}
+  .mini-metrics{display:grid; gap:.55rem; align-content:start}
+  .metric{padding:.55rem .6rem; border:1px solid var(--line); border-radius:7px; background:#fff}
+  .metric span{display:block; color:var(--faint); font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase}
+  .metric strong{display:block; margin-top:.12rem; font-size:.86rem}
+  .metric b{color:var(--amber)}
+
+  @media (max-width:980px){
+    .hero-signals{grid-template-columns:repeat(2,1fr)}
+    .signal:nth-child(2n){border-right:0}
+    .signal:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .instrument-grid{grid-template-columns:1fr; min-height:0}
+    .toolpane{border-right:0; border-bottom:1px solid var(--line)}
+    .toolpane:last-child{border-bottom:0}
+  }
+
   /* console / availability */
   .console-grid{display:grid; grid-template-columns:1fr 1.35fr; gap:clamp(1.4rem,3.5vw,2.6rem); align-items:center}
   @media (max-width:840px){.console-grid{grid-template-columns:1fr; gap:1.6rem}}
@@ -203,6 +258,9 @@
     .hero .lead{font-size:1rem; margin-top:1rem; line-height:1.5}
     .hero-cta{margin-top:1.3rem}
     .hero-meta{margin-top:1.1rem; gap:.35rem .7rem}
+    .hero-signals{margin-top:.2rem; margin-bottom:1.2rem}
+    .signal{padding:.78rem .85rem; border-bottom:1px solid var(--line)}
+    .signal:nth-last-child(-n+2){border-bottom:0}
     .stage{min-height:224px}
     .card{max-width:100%}
     .card-foot{height:56px}
@@ -212,6 +270,7 @@
     .module{padding:1.2rem 1.15rem 1.3rem}
     .out{padding:1rem .7rem .9rem}
     .console pre{font-size:.75rem}
+    .artifact-viz{grid-template-columns:1fr}
     .anote h3{font-size:1.3rem}
     .end h2{font-size:clamp(1.6rem,6.5vw,2.15rem)}
     .nav-in{height:58px}
@@ -237,7 +296,7 @@
     </a>
     <div class="nav-right">
       <span class="status"><i></i>in development · v0.0</span>
-      <a class="btn btn-primary btn-sm" href="https://github.com/omniscientists" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-primary btn-sm" href="https://github.com/omniscientists" target="_blank" rel="noopener"><span class="star">★</span> GitHub</a>
     </div>
   </div>
 </header>
@@ -254,7 +313,7 @@
           trace every figure back to the cell that produced it.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#capabilities">Explore capabilities</a>
-          <a class="btn btn-ghost" href="https://github.com/omniscientists" target="_blank" rel="noopener">★ Star on GitHub</a>
+          <a class="btn btn-ghost" href="#code">Get started →</a>
         </div>
         <div class="hero-meta">
           <span><i></i>Apache-2.0</span><span><i></i>Runs on your machine</span><span><i></i>Any model</span>
@@ -288,6 +347,12 @@
           <div class="fslide" id="foot"><span class="disc">Biology</span><span class="fmeta"><span class="file">hemoglobin.pdb</span><span class="rep">cell[3] · reproducible</span></span></div>
         </div>
       </figure>
+    </div>
+    <div class="wrap hero-signals reveal" aria-label="Research system summary">
+      <div class="signal"><span>workspace</span><strong>Local daemon</strong><em>localhost:4100</em></div>
+      <div class="signal"><span>execution</span><strong>Persistent kernel</strong><em>cell state retained</em></div>
+      <div class="signal"><span>artifacts</span><strong>Traceable outputs</strong><em>.pdb .vcf .csv .png</em></div>
+      <div class="signal"><span>models</span><strong>Bring any model</strong><em>provider agnostic</em></div>
     </div>
   </section>
 
@@ -333,11 +398,78 @@
     </div>
   </section>
 
-  <!-- 03 WORKFLOW -->
+  <!-- 03 WORKBENCH -->
+  <section class="band" id="workbench">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <div class="lhs"><span class="tlabel">// 03 · Workbench</span><h2>A research interface, not a chat transcript</h2></div>
+        <div class="rhs">TRACE<br>cell-level</div>
+      </div>
+      <div class="instrument reveal" aria-label="Research workbench preview">
+        <div class="instrument-top">
+          <span class="tlabel">Live scientific workspace</span>
+          <div class="chipline" aria-label="Supported research domains">
+            <span>proteins</span><span>genomes</span><span>molecules</span><span>materials</span><span>clinical data</span>
+          </div>
+        </div>
+        <div class="instrument-grid">
+          <div class="toolpane">
+            <div class="toolhead"><h3>Question routing</h3><span>agent graph</span></div>
+            <div class="prompt-box">
+              <div class="prompt-line"><b>›</b><span>Compare EGFR L858R binding-pocket geometry against a candidate inhibitor and generate a reproducible figure.</span></div>
+              <div class="route-list">
+                <div class="route"><span>lead</span><strong>Decompose the analysis and assign domain specialists.</strong></div>
+                <div class="route"><span>bio</span><strong>Fetch structure, annotate residues, validate chains.</strong></div>
+                <div class="route"><span>chem</span><strong>Inspect ligand contacts and molecular descriptors.</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="toolpane">
+            <div class="toolhead"><h3>Execution trace</h3><span>kernel log</span></div>
+            <div class="trace-list">
+              <div class="trace-row active"><span>cell[5]</span><div><strong>load_structure("1M17")</strong><em>pdb · cached locally</em></div></div>
+              <div class="trace-row"><span>cell[6]</span><div><strong>select_binding_pocket()</strong><em>residue map · 18 contacts</em></div></div>
+              <div class="trace-row"><span>cell[7]</span><div><strong>render_pocket()</strong><em>figure + provenance</em></div></div>
+              <div class="trace-row"><span>review</span><div><strong>verify outputs</strong><em>schema, files, citations</em></div></div>
+            </div>
+          </div>
+          <div class="toolpane">
+            <div class="toolhead"><h3>Artifact preview</h3><span>reproducible</span></div>
+            <div class="artifact-screen">
+              <div class="artifact-toolbar"><span>binding-pocket.png</span><span>cell[7]</span></div>
+              <div class="artifact-viz">
+                <div class="mini-structure" aria-hidden="true">
+                  <svg viewBox="0 0 210 170" fill="none">
+                    <path d="M34 116c18-37 48-53 89-49 28 3 46-5 58-24" stroke="#0A3327" stroke-width="8" stroke-linecap="round"/>
+                    <path d="M36 119c20-28 46-38 78-31 32 7 52-5 69-36" stroke="#15C48E" stroke-width="5" stroke-linecap="round"/>
+                    <g stroke="#2F64D6" stroke-width="2" stroke-linecap="round">
+                      <path d="M101 92l20 11 20-11v-23l-20-11-20 11z"/>
+                      <path d="M121 103v21M141 92l19 11M101 92l-19 12"/>
+                    </g>
+                    <circle cx="121" cy="103" r="5" fill="#D88A24"/>
+                    <circle cx="141" cy="92" r="4" fill="#2F64D6"/>
+                    <circle cx="101" cy="92" r="4" fill="#15C48E"/>
+                  </svg>
+                </div>
+                <div class="mini-metrics">
+                  <div class="metric"><span>confidence</span><strong>verified</strong></div>
+                  <div class="metric"><span>trace</span><strong>cell[7]</strong></div>
+                  <div class="metric"><span>review</span><strong><b>2</b> findings cleared</strong></div>
+                  <div class="metric"><span>export</span><strong>.png + notebook</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 WORKFLOW -->
   <section class="band" id="workflow">
     <div class="wrap">
       <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 03 · Workflow</span><h2>From prompt to traced artifact</h2></div>
+        <div class="lhs"><span class="tlabel">// 04 · Workflow</span><h2>From prompt to traced artifact</h2></div>
         <div class="rhs">PIPELINE<br>local daemon</div>
       </div>
       <div class="flowwrap hud reveal">
@@ -356,11 +488,11 @@
     </div>
   </section>
 
-  <!-- 04 AVAILABILITY -->
+  <!-- 05 AVAILABILITY -->
   <section class="band alt" id="code">
     <div class="wrap">
       <div class="sechead reveal">
-        <div class="lhs"><span class="tlabel">// 04 · Availability</span><h2>Local by default, reproducible by design</h2></div>
+        <div class="lhs"><span class="tlabel">// 05 · Availability</span><h2>Local by default, reproducible by design</h2></div>
         <div class="rhs">LICENSE<br>Apache-2.0</div>
       </div>
       <div class="console-grid">
@@ -402,6 +534,7 @@
     </a>
     <div class="foot-links">
       <a href="#capabilities">Capabilities</a>
+      <a href="#workbench">Workbench</a>
       <a href="#workflow">Workflow</a>
       <a href="https://github.com/omniscientists" target="_blank" rel="noopener">GitHub</a>
     </div>
