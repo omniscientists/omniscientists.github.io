@@ -230,6 +230,56 @@
   .demo-steps{display:grid; gap:.45rem; margin:.75rem 0; padding:0; list-style:none}.demo-step{display:grid; grid-template-columns:18px minmax(0,1fr); align-items:center; gap:.45rem; min-height:30px; padding:0 .5rem; border:1px solid transparent; border-radius:6px; color:var(--muted); font-size:.76rem}.demo-step i{display:grid; place-items:center; width:18px; height:18px; border:1px solid var(--line-2); border-radius:50%; font-style:normal; font-family:var(--mono); font-size:.58rem}.demo-step.active{border-color:var(--line-2); color:var(--ink); background:var(--mint-tint)}.demo-step.done i{border-color:var(--mint-deep); color:#fff; background:var(--mint-deep)}
   .demo-approve{display:inline-flex; align-items:center; justify-content:center; min-height:34px; padding:0 .75rem; border:1px solid var(--mint-deep); border-radius:6px; background:var(--mint); color:#03140F; font-size:.78rem; font-weight:750}
 
+  /* workbench visual polish */
+  .demo-window{border-radius:8px; border-color:#D9E7E1; background:#F8FBFA; box-shadow:0 1px 2px rgba(10,35,25,.05),0 28px 70px -44px rgba(10,35,25,.38)}
+  .demo-bar{min-height:46px; border-bottom-color:#DDEAE4; background:linear-gradient(180deg,#FFFFFF 0%,#F5FAF7 100%)}
+  .demo-title strong{font-size:.94rem}.demo-title span{letter-spacing:.04em; text-transform:uppercase}
+  .demo-service{border-color:#C9DFD6; background:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}
+  .demo-service strong{color:var(--mint-deep); font-weight:700}
+  .demo-shell{background:linear-gradient(90deg,#FFFFFF 0,#FFFFFF 220px,#F6FAF8 220px,#F6FAF8 100%)}
+  .demo-sidebar{background:#FFFFFF}
+  .demo-brand{padding:.7rem .72rem; border:1px solid var(--line); border-radius:8px; background:linear-gradient(180deg,#FBFDFC,#F4FAF7)}
+  .demo-side-section h3{color:var(--faint); font-family:var(--mono); font-size:.62rem; font-weight:700; letter-spacing:.11em; text-transform:uppercase}
+  .demo-session{position:relative; border:1px solid #BCE6D4; background:linear-gradient(180deg,#F0FBF6,#E8F7F0); box-shadow:0 10px 26px -24px rgba(12,158,112,.45)}
+  .demo-session:before{content:""; position:absolute; left:0; top:.5rem; bottom:.5rem; width:3px; border-radius:0 2px 2px 0; background:var(--mint)}
+  .demo-select{display:flex; align-items:center; border-color:#D8E7E0; background:linear-gradient(180deg,#fff,#FAFDFC)}
+  .demo-skill{min-height:24px}.demo-check{border-color:var(--mint-deep); box-shadow:0 0 0 2px rgba(21,196,142,.1)}
+  .demo-workbench{padding:1rem; background:
+    linear-gradient(#F4FAF7 1px,transparent 1px),
+    linear-gradient(90deg,#F4FAF7 1px,transparent 1px),
+    #F8FBFA; background-size:28px 28px}
+  .demo-pane{border-color:#DCEAE3; background:rgba(255,255,255,.94); box-shadow:0 10px 28px -26px rgba(10,35,25,.3)}
+  .demo-pane-head{min-height:48px; border-bottom-color:#DCEAE3; background:linear-gradient(180deg,#FFFFFF,#F9FCFA)}
+  .demo-pane-head h3{font-size:.92rem}.demo-pane-head span{padding:.16rem .38rem; border:1px solid var(--line); border-radius:4px; background:#fff}
+  .demo-bubble{border-color:#DCEAE3; box-shadow:0 1px 1px rgba(10,35,25,.03)}
+  .demo-user{border-color:#BDEAD6; background:linear-gradient(180deg,#F0FBF6,#E9F8F1)}
+  .demo-assistant{border-color:#D8E3F7; background:linear-gradient(180deg,#FFFFFF,#F4F8FF)}
+  .demo-tool{border-color:#DCEAE3; background:#fff; transition:border-color .2s, box-shadow .2s, transform .2s}
+  .demo-tool.active{border-color:var(--mint); background:var(--mint-tint); transform:translateY(-1px); box-shadow:0 0 0 3px rgba(21,196,142,.14),0 10px 20px -18px rgba(12,158,112,.5)}
+  .demo-tool code{color:var(--faint)}
+  .demo-prompt{display:flex; align-items:center; border-color:#DCEAE3; background:#FBFDFC; font-family:var(--mono); color:var(--muted)}
+  .demo-run,.demo-approve{transition:transform .16s, background .2s, box-shadow .2s}
+  .demo-run:hover,.demo-approve:hover{background:var(--mint-deep); transform:translateY(-1px); box-shadow:0 12px 22px -18px rgba(12,158,112,.7)}
+  .demo-example{transition:border-color .18s, background .18s, color .18s}.demo-example.active{box-shadow:0 0 0 2px rgba(21,196,142,.1)}
+  .demo-tabs{height:48px}.demo-tab{font-weight:650}.demo-tab.active:after{height:2px}
+  .demo-tab-panel{background:linear-gradient(180deg,#FFFFFF,#FBFDFC)}
+  .demo-artifact-card{border-color:#DCEAE3; background:#FFFFFF; box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}
+  .demo-structure{position:relative; overflow:hidden; border-color:#DCEAE3; background:
+    linear-gradient(#EDF4F1 1px,transparent 1px),
+    linear-gradient(90deg,#EDF4F1 1px,transparent 1px),
+    radial-gradient(80% 85% at 52% 44%,#FFFFFF 0%,#F4FAF7 100%); background-size:22px 22px,22px 22px,100% 100%}
+  .demo-structure:after{content:"artifact · cell[7]"; position:absolute; left:.55rem; bottom:.45rem; color:var(--faint); font-family:var(--mono); font-size:.56rem; letter-spacing:.08em; text-transform:uppercase}
+  .demo-metric{border-color:#DCEAE3; background:#FFFFFF}.demo-metric strong{font-weight:750}
+  .demo-code{border-color:#DCEAE3; background:#0B1F17; color:#D8F4E7; box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+  .demo-report-row{border-color:#DCEAE3; background:linear-gradient(180deg,#FFFFFF,#FBFDFC)}
+  .demo-log{background:#0B1F17; color:#D8F4E7}
+  .demo-log-line time{color:#74A392}.demo-log-line span{color:#D8F4E7}
+  .demo-pane-foot{border-top-color:#153E31; background:#0B1F17; color:#B5D7C9}
+  .demo-status-dot.running{box-shadow:0 0 0 4px rgba(216,138,36,.14)}.demo-status-dot.ok{box-shadow:0 0 0 4px rgba(21,196,142,.14)}
+  .demo-approval-summary{padding:.68rem .75rem; border:1px solid #DCEAE3; border-radius:8px; background:linear-gradient(180deg,#FFFFFF,#FBFDFC)}
+  .demo-step{border-color:#EEF4F1; background:#FFFFFF}.demo-step.active{border-color:#BDEAD6; background:linear-gradient(180deg,#F0FBF6,#E9F8F1)}.demo-step.done{color:var(--ink)}
+  @media (prefers-reduced-motion:reduce){.demo-tool,.demo-run,.demo-approve,.demo-example{transition:none}.demo-tool.active,.demo-run:hover,.demo-approve:hover{transform:none}}
+
   @media (max-width:980px){
     .hero-signals{grid-template-columns:repeat(2,1fr)}
     .signal:nth-child(2n){border-right:0}
