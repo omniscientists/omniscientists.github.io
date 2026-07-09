@@ -181,49 +181,64 @@
   .flow{min-width:660px; max-width:940px; margin:0 auto}
   .flow svg{width:100%; height:auto; display:block; fill:none}
 
-  /* research workbench */
-  .instrument{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface); box-shadow:var(--shadow)}
-  .instrument-top{display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
-    padding:.8rem 1rem; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#fff,var(--panel))}
-  .chipline{display:flex; flex-wrap:wrap; gap:.4rem}
-  .chipline span{font-family:var(--mono); font-size:.62rem; color:var(--muted); border:1px solid var(--line-2); border-radius:4px; padding:.18rem .42rem; background:#fff}
-  .instrument-grid{display:grid; grid-template-columns:1.05fr .9fr 1.05fr; min-height:360px}
-  .toolpane{min-width:0; padding:1rem; border-right:1px solid var(--line); background:#fff}
-  .toolpane:last-child{border-right:0}
-  .toolhead{display:flex; align-items:center; justify-content:space-between; gap:.7rem; margin-bottom:.85rem}
-  .toolhead h3{font-size:.88rem; font-weight:750; letter-spacing:0}
-  .toolhead span{font-family:var(--mono); font-size:.62rem; color:var(--faint)}
-  .prompt-box{display:grid; gap:.75rem; padding:1rem; border:1px solid var(--line); border-radius:8px; background:var(--blue-tint)}
-  .prompt-line{display:grid; grid-template-columns:auto minmax(0,1fr); gap:.55rem; align-items:start; font-family:var(--mono); font-size:.82rem; line-height:1.55}
-  .prompt-line b{color:var(--blue); font-weight:700}
-  .route-list{display:grid; gap:.55rem}
-  .route{display:grid; grid-template-columns:70px minmax(0,1fr); gap:.65rem; align-items:start; padding:.55rem 0; border-top:1px solid rgba(47,100,214,.14)}
-  .route span{font-family:var(--mono); font-size:.62rem; color:var(--blue)}
-  .route strong{font-size:.8rem; line-height:1.3}
-  .trace-list{display:grid; gap:.6rem}
-  .trace-row{display:grid; grid-template-columns:58px minmax(0,1fr); gap:.7rem; padding:.65rem .7rem; border:1px solid var(--line); border-radius:7px; background:#fff}
-  .trace-row.active{border-color:var(--line-2); background:var(--mint-tint)}
-  .trace-row span{font-family:var(--mono); font-size:.62rem; color:var(--mint-deep)}
-  .trace-row strong{display:block; font-size:.82rem; line-height:1.25}
-  .trace-row em{display:block; margin-top:.15rem; color:var(--faint); font-family:var(--mono); font-size:.62rem; font-style:normal}
-  .artifact-screen{border:1px solid var(--line); border-radius:8px; overflow:hidden; background:linear-gradient(180deg,#fff,var(--panel))}
-  .artifact-toolbar{display:flex; align-items:center; justify-content:space-between; gap:.7rem; padding:.56rem .7rem; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:.62rem; color:var(--muted)}
-  .artifact-viz{display:grid; grid-template-columns:1fr .75fr; gap:.75rem; padding:.8rem}
-  .mini-structure{min-height:172px; border:1px solid var(--line); border-radius:7px; display:grid; place-items:center; background:#fff}
-  .mini-structure svg{width:92%; height:auto; display:block}
-  .mini-metrics{display:grid; gap:.55rem; align-content:start}
-  .metric{padding:.55rem .6rem; border:1px solid var(--line); border-radius:7px; background:#fff}
-  .metric span{display:block; color:var(--faint); font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase}
-  .metric strong{display:block; margin-top:.12rem; font-size:.86rem}
-  .metric b{color:var(--amber)}
+  /* interactive workbench demo */
+  .demo-window{border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#fff; box-shadow:var(--shadow)}
+  .demo-bar{display:grid; grid-template-columns:170px minmax(0,1fr) auto; align-items:center; gap:.9rem; min-height:42px; padding:0 .85rem; border-bottom:1px solid var(--line); background:#fff}
+  .demo-chrome{display:inline-flex; align-items:center; gap:.45rem; color:var(--muted)}
+  .demo-dot{width:10px; height:10px; border-radius:50%; background:var(--line-2)}
+  .demo-dot.red{background:#E86A5C}.demo-dot.yellow{background:#E2A43B}.demo-dot.green{background:#31B66D}
+  .demo-title{display:flex; align-items:baseline; gap:.55rem; min-width:0}
+  .demo-title strong{font-size:.9rem}.demo-title span{color:var(--faint); font-family:var(--mono); font-size:.68rem}
+  .demo-service{display:inline-flex; align-items:center; gap:.38rem; min-height:26px; padding:0 .55rem; border:1px solid var(--line); border-radius:6px; color:var(--muted); font-family:var(--mono); font-size:.66rem}
+  .demo-shell{display:grid; grid-template-columns:220px minmax(0,1fr); min-height:560px; background:#F9FBFA}
+  .demo-sidebar{display:grid; grid-template-rows:auto auto auto minmax(0,1fr); gap:1rem; min-width:0; padding:1rem; border-right:1px solid var(--line); background:#fff}
+  .demo-brand strong{display:block; font-size:1.08rem; line-height:1.2}.demo-brand span{display:block; margin-top:.18rem; color:var(--faint); font-family:var(--mono); font-size:.64rem}
+  .demo-side-section{display:grid; gap:.55rem; min-width:0}.demo-side-section h3{font-size:.82rem; letter-spacing:0}
+  .demo-session{display:grid; gap:.12rem; width:100%; min-height:38px; padding:.45rem .55rem; border:0; border-radius:6px; color:var(--ink); background:var(--mint-tint); text-align:left}
+  .demo-session span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:.78rem; font-weight:700}.demo-session small{color:var(--muted); font-family:var(--mono); font-size:.6rem}
+  .demo-select{min-height:34px; padding:0 .6rem; border:1px solid var(--line-2); border-radius:6px; color:var(--ink); background:#fff; font-size:.78rem}
+  .demo-skills{display:grid; gap:.4rem; max-height:160px; overflow:auto}
+  .demo-skill{display:grid; grid-template-columns:16px minmax(0,1fr); align-items:center; gap:.45rem; color:var(--muted); font-size:.78rem}
+  .demo-check{display:grid; place-items:center; width:16px; height:16px; border:1px solid var(--line-2); border-radius:4px; color:#fff; background:var(--mint-deep); font-size:.7rem; line-height:1}
+  .demo-workbench{display:grid; grid-template-columns:minmax(320px,1fr) 6px minmax(330px,1fr); grid-template-rows:minmax(270px,1fr) 6px minmax(230px,.86fr); min-width:0; min-height:0; padding:.8rem; background:#F8FAF9}
+  .demo-pane{display:grid; min-width:0; min-height:0; overflow:hidden; border:1px solid var(--line); border-radius:8px; background:#fff}
+  .demo-conversation{grid-column:1; grid-row:1; grid-template-rows:auto minmax(0,1fr) auto}
+  .demo-artifacts{grid-column:3; grid-row:1; grid-template-rows:auto minmax(0,1fr)}
+  .demo-console{grid-column:1; grid-row:3; grid-template-rows:auto minmax(0,1fr) auto}
+  .demo-approval{grid-column:3; grid-row:3; grid-template-rows:auto minmax(0,1fr)}
+  .demo-split-v{grid-column:2; grid-row:1/4}.demo-split-h{grid-column:1/4; grid-row:2}.demo-split-v,.demo-split-h{position:relative}.demo-split-v:after,.demo-split-h:after{content:""; position:absolute; background:#D1DDD8; border-radius:99px}.demo-split-v:after{top:16px; bottom:16px; left:2px; width:1px}.demo-split-h:after{left:16px; right:16px; top:2px; height:1px}
+  .demo-pane-head{display:flex; align-items:center; justify-content:space-between; gap:.8rem; min-height:46px; padding:0 .85rem; border-bottom:1px solid var(--line); background:#fff}
+  .demo-pane-head h3{font-size:.95rem; letter-spacing:0}.demo-pane-head span{color:var(--faint); font-family:var(--mono); font-size:.62rem}
+  .demo-timeline{display:grid; align-content:start; gap:.65rem; min-height:0; overflow:auto; padding:.85rem}
+  .demo-bubble{max-width:92%; padding:.58rem .7rem; border:1px solid var(--line-2); border-radius:8px; background:#fff; font-size:.82rem; line-height:1.42}
+  .demo-user{justify-self:end; box-shadow:0 1px 2px rgba(10,35,25,.06)}.demo-assistant{justify-self:start; background:#FBFDFC}
+  .demo-tool-row{display:flex; flex-wrap:wrap; gap:.4rem}.demo-tool{display:inline-flex; align-items:center; gap:.35rem; min-height:26px; padding:0 .5rem; border:1px solid var(--line-2); border-radius:6px; font-family:var(--mono); font-size:.62rem; background:#fff}.demo-tool.active{border-color:var(--mint); box-shadow:0 0 0 3px rgba(21,196,142,.12)}
+  .demo-composer{display:grid; grid-template-columns:1fr auto; gap:.55rem; padding:.7rem .85rem; border-top:1px solid var(--line)}
+  .demo-prompt{min-width:0; min-height:38px; padding:.55rem .65rem; border:1px solid var(--line-2); border-radius:6px; color:var(--ink); background:#fff; font-size:.8rem}
+  .demo-run{min-height:38px; padding:0 .8rem; border:1px solid var(--mint-deep); border-radius:6px; color:#03140F; background:var(--mint); font-size:.8rem; font-weight:700}
+  .demo-examples{display:flex; gap:.35rem; padding:0 .85rem .7rem; flex-wrap:wrap}
+  .demo-example{border:1px solid var(--line-2); border-radius:6px; padding:.28rem .5rem; color:var(--muted); background:#fff; font-size:.72rem}.demo-example.active{border-color:var(--mint); color:var(--mint-deep); background:var(--mint-tint)}
+  .demo-tabs{display:flex; align-items:stretch; height:46px}.demo-tab{position:relative; padding:0 .75rem; border:0; background:transparent; color:var(--muted); font-size:.88rem}.demo-tab.active{color:var(--mint-deep); font-weight:750}.demo-tab.active:after{content:""; position:absolute; left:.75rem; right:.75rem; bottom:0; height:3px; background:var(--mint)}
+  .demo-tab-panel{display:none; min-height:0; overflow:auto; padding:.85rem}.demo-tab-panel.active{display:block}
+  .demo-artifact-card{display:grid; gap:.7rem; border:1px solid var(--line); border-radius:8px; padding:.75rem; background:#fff}.demo-artifact-title{display:flex; align-items:center; justify-content:space-between; gap:.7rem}.demo-artifact-title strong{font-size:.82rem}.demo-artifact-title span{font-family:var(--mono); color:var(--faint); font-size:.62rem}
+  .demo-viz{display:grid; grid-template-columns:1fr .82fr; gap:.7rem}.demo-structure{display:grid; place-items:center; min-height:150px; border:1px solid var(--line); border-radius:6px; background:#fff}.demo-structure svg{width:92%; height:auto}.demo-metrics{display:grid; gap:.45rem; align-content:start}.demo-metric{padding:.48rem .55rem; border:1px solid var(--line); border-radius:6px}.demo-metric span{display:block; color:var(--faint); font-family:var(--mono); font-size:.56rem; text-transform:uppercase}.demo-metric strong{display:block; margin-top:.1rem; font-size:.78rem}.demo-metric b{color:var(--amber)}
+  .demo-code{margin:0; max-height:230px; overflow:auto; padding:.75rem; border:1px solid var(--line); border-radius:6px; background:#FBFDFC; font-family:var(--mono); font-size:.72rem; line-height:1.5; white-space:pre-wrap}
+  .demo-report{display:grid; gap:.55rem}.demo-report-row{padding:.6rem .7rem; border:1px solid var(--line); border-radius:6px; background:#fff}.demo-report-row strong{display:block; font-size:.82rem}.demo-report-row span{display:block; margin-top:.12rem; color:var(--muted); font-size:.74rem}
+  .demo-log{display:grid; align-content:start; gap:.18rem; min-height:0; overflow:auto; padding:.85rem; font-family:var(--mono); font-size:.72rem; line-height:1.45}.demo-log-line{display:grid; grid-template-columns:70px minmax(0,1fr); gap:.5rem}.demo-log-line time{color:var(--faint)}.demo-log-line.err span{color:#B42318}
+  .demo-pane-foot{display:flex; align-items:center; gap:.45rem; min-height:38px; padding:0 .85rem; border-top:1px solid var(--line); color:var(--muted); font-size:.74rem}.demo-status-dot{width:9px; height:9px; border-radius:50%; background:var(--faint)}.demo-status-dot.running{background:var(--amber)}.demo-status-dot.ok{background:var(--mint-deep)}
+  .demo-approval-body{min-height:0; overflow:auto; padding:.85rem}.demo-approval-summary span{display:block; color:var(--faint); font-family:var(--mono); font-size:.62rem}.demo-approval-summary strong{display:block; margin-top:.12rem; font-size:.88rem}
+  .demo-steps{display:grid; gap:.45rem; margin:.75rem 0; padding:0; list-style:none}.demo-step{display:grid; grid-template-columns:18px minmax(0,1fr); align-items:center; gap:.45rem; min-height:30px; padding:0 .5rem; border:1px solid transparent; border-radius:6px; color:var(--muted); font-size:.76rem}.demo-step i{display:grid; place-items:center; width:18px; height:18px; border:1px solid var(--line-2); border-radius:50%; font-style:normal; font-family:var(--mono); font-size:.58rem}.demo-step.active{border-color:var(--line-2); color:var(--ink); background:var(--mint-tint)}.demo-step.done i{border-color:var(--mint-deep); color:#fff; background:var(--mint-deep)}
+  .demo-approve{display:inline-flex; align-items:center; justify-content:center; min-height:34px; padding:0 .75rem; border:1px solid var(--mint-deep); border-radius:6px; background:var(--mint); color:#03140F; font-size:.78rem; font-weight:750}
 
   @media (max-width:980px){
     .hero-signals{grid-template-columns:repeat(2,1fr)}
     .signal:nth-child(2n){border-right:0}
     .signal:nth-child(-n+2){border-bottom:1px solid var(--line)}
-    .instrument-grid{grid-template-columns:1fr; min-height:0}
-    .toolpane{border-right:0; border-bottom:1px solid var(--line)}
-    .toolpane:last-child{border-bottom:0}
+    .demo-shell{grid-template-columns:1fr}
+    .demo-sidebar{grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:auto auto; border-right:0; border-bottom:1px solid var(--line)}
+    .demo-brand,.demo-skills-wrap{grid-column:1/-1}
+    .demo-workbench{display:flex; flex-direction:column; gap:.6rem}
+    .demo-pane{min-height:310px}.demo-split-v,.demo-split-h{display:none}
   }
 
   /* console / availability */
@@ -270,7 +285,12 @@
     .module{padding:1.2rem 1.15rem 1.3rem}
     .out{padding:1rem .7rem .9rem}
     .console pre{font-size:.75rem}
-    .artifact-viz{grid-template-columns:1fr}
+    .demo-bar{grid-template-columns:1fr; gap:.35rem; padding:.6rem .75rem}
+    .demo-chrome,.demo-service{display:none}
+    .demo-sidebar{grid-template-columns:1fr; padding:.8rem}
+    .demo-workbench{padding:.65rem}
+    .demo-composer{grid-template-columns:1fr}
+    .demo-viz{grid-template-columns:1fr}
     .anote h3{font-size:1.3rem}
     .end h2{font-size:clamp(1.6rem,6.5vw,2.15rem)}
     .nav-in{height:58px}
@@ -363,60 +383,121 @@
         <div class="lhs"><span class="tlabel">// 01 · Workbench</span><h2>A research interface, not a chat transcript</h2></div>
         <div class="rhs">TRACE<br>cell-level</div>
       </div>
-      <div class="instrument reveal" aria-label="Research workbench preview">
-        <div class="instrument-top">
-          <span class="tlabel">Live scientific workspace</span>
-          <div class="chipline" aria-label="Supported research domains">
-            <span>proteins</span><span>genomes</span><span>molecules</span><span>materials</span><span>clinical data</span>
-          </div>
+      <div class="demo-window reveal" id="demo" aria-label="Open Science GUI demo">
+        <div class="demo-bar">
+          <div class="demo-chrome" aria-hidden="true"><span class="demo-dot red"></span><span class="demo-dot yellow"></span><span class="demo-dot green"></span></div>
+          <div class="demo-title"><strong>Omniscientists</strong><span>Frame workbench</span></div>
+          <div class="demo-service"><span>daemon</span><strong>127.0.0.1:4100</strong></div>
         </div>
-        <div class="instrument-grid">
-          <div class="toolpane">
-            <div class="toolhead"><h3>Question routing</h3><span>agent graph</span></div>
-            <div class="prompt-box">
-              <div class="prompt-line"><b>›</b><span>Compare EGFR L858R binding-pocket geometry against a candidate inhibitor and generate a reproducible figure.</span></div>
-              <div class="route-list">
-                <div class="route"><span>lead</span><strong>Decompose the analysis and assign domain specialists.</strong></div>
-                <div class="route"><span>bio</span><strong>Fetch structure, annotate residues, validate chains.</strong></div>
-                <div class="route"><span>chem</span><strong>Inspect ligand contacts and molecular descriptors.</strong></div>
+        <div class="demo-shell">
+          <aside class="demo-sidebar">
+            <div class="demo-brand"><strong>Research session</strong><span>gui-local · live preview</span></div>
+            <section class="demo-side-section">
+              <h3>Sessions</h3>
+              <button class="demo-session" type="button"><span data-demo-session>EGFR pocket analysis</span><small>approval pending · 4 frames</small></button>
+            </section>
+            <section class="demo-side-section">
+              <h3>Agent</h3>
+              <div class="demo-select" data-demo-agent>Operon coordinator</div>
+            </section>
+            <section class="demo-side-section demo-skills-wrap">
+              <h3>Skills</h3>
+              <div class="demo-skills">
+                <div class="demo-skill"><span class="demo-check">✓</span><span>protein-structure</span></div>
+                <div class="demo-skill"><span class="demo-check">✓</span><span>python-kernel</span></div>
+                <div class="demo-skill"><span class="demo-check">✓</span><span>artifact-review</span></div>
+                <div class="demo-skill"><span class="demo-check">✓</span><span>mcp-datasets</span></div>
               </div>
-            </div>
-          </div>
-          <div class="toolpane">
-            <div class="toolhead"><h3>Execution trace</h3><span>kernel log</span></div>
-            <div class="trace-list">
-              <div class="trace-row active"><span>cell[5]</span><div><strong>load_structure("1M17")</strong><em>pdb · cached locally</em></div></div>
-              <div class="trace-row"><span>cell[6]</span><div><strong>select_binding_pocket()</strong><em>residue map · 18 contacts</em></div></div>
-              <div class="trace-row"><span>cell[7]</span><div><strong>render_pocket()</strong><em>figure + provenance</em></div></div>
-              <div class="trace-row"><span>review</span><div><strong>verify outputs</strong><em>schema, files, citations</em></div></div>
-            </div>
-          </div>
-          <div class="toolpane">
-            <div class="toolhead"><h3>Artifact preview</h3><span>reproducible</span></div>
-            <div class="artifact-screen">
-              <div class="artifact-toolbar"><span>binding-pocket.png</span><span>cell[7]</span></div>
-              <div class="artifact-viz">
-                <div class="mini-structure" aria-hidden="true">
-                  <svg viewBox="0 0 210 170" fill="none">
-                    <path d="M34 116c18-37 48-53 89-49 28 3 46-5 58-24" stroke="#0A3327" stroke-width="8" stroke-linecap="round"/>
-                    <path d="M36 119c20-28 46-38 78-31 32 7 52-5 69-36" stroke="#15C48E" stroke-width="5" stroke-linecap="round"/>
-                    <g stroke="#2F64D6" stroke-width="2" stroke-linecap="round">
-                      <path d="M101 92l20 11 20-11v-23l-20-11-20 11z"/>
-                      <path d="M121 103v21M141 92l19 11M101 92l-19 12"/>
-                    </g>
-                    <circle cx="121" cy="103" r="5" fill="#D88A24"/>
-                    <circle cx="141" cy="92" r="4" fill="#2F64D6"/>
-                    <circle cx="101" cy="92" r="4" fill="#15C48E"/>
-                  </svg>
-                </div>
-                <div class="mini-metrics">
-                  <div class="metric"><span>confidence</span><strong>verified</strong></div>
-                  <div class="metric"><span>trace</span><strong>cell[7]</strong></div>
-                  <div class="metric"><span>review</span><strong><b>2</b> findings cleared</strong></div>
-                  <div class="metric"><span>export</span><strong>.png + notebook</strong></div>
+            </section>
+          </aside>
+          <div class="demo-workbench">
+            <section class="demo-pane demo-conversation" aria-labelledby="demo-conversation-title">
+              <header class="demo-pane-head"><h3 id="demo-conversation-title">Conversation</h3><span data-demo-frame>frame a13f</span></header>
+              <div class="demo-timeline">
+                <div class="demo-bubble demo-user" data-demo-prompt>Compare EGFR L858R binding-pocket geometry against a candidate inhibitor and generate a reproducible figure.</div>
+                <div class="demo-bubble demo-assistant" data-demo-reply>I will route structure loading, pocket selection, rendering, and review through a persistent kernel.</div>
+                <div class="demo-tool-row">
+                  <span class="demo-tool active" data-demo-tool="0">run_python <code>cell[5]</code></span>
+                  <span class="demo-tool" data-demo-tool="1">run_python <code>cell[6]</code></span>
+                  <span class="demo-tool" data-demo-tool="2">render_artifact <code>cell[7]</code></span>
+                  <span class="demo-tool" data-demo-tool="3">review_output</span>
                 </div>
               </div>
-            </div>
+              <div class="demo-examples" aria-label="Example prompts">
+                <button class="demo-example active" type="button" data-example="protein">Protein</button>
+                <button class="demo-example" type="button" data-example="genome">Genome</button>
+                <button class="demo-example" type="button" data-example="material">Material</button>
+              </div>
+              <div class="demo-composer">
+                <div class="demo-prompt" data-demo-input>analyze 1M17 and render the binding pocket</div>
+                <button class="demo-run" type="button" data-demo-run>Run example</button>
+              </div>
+            </section>
+            <div class="demo-split-v" aria-hidden="true"></div>
+            <section class="demo-pane demo-artifacts" aria-labelledby="demo-artifacts-title">
+              <header class="demo-pane-head">
+                <div class="demo-tabs" role="tablist" aria-label="Demo artifact views">
+                  <button class="demo-tab active" type="button" role="tab" aria-selected="true" data-tab="artifact">Artifact</button>
+                  <button class="demo-tab" type="button" role="tab" aria-selected="false" data-tab="notebook">Notebook</button>
+                  <button class="demo-tab" type="button" role="tab" aria-selected="false" data-tab="report">Report</button>
+                </div>
+                <span id="demo-artifacts-title">traced</span>
+              </header>
+              <div class="demo-tab-panel active" data-panel="artifact">
+                <div class="demo-artifact-card">
+                  <div class="demo-artifact-title"><strong data-demo-artifact-name>binding-pocket.png</strong><span data-demo-artifact-type>image/png</span></div>
+                  <div class="demo-viz">
+                    <div class="demo-structure" aria-hidden="true" data-demo-viz>
+                      <svg viewBox="0 0 210 170" fill="none">
+                        <path d="M34 116c18-37 48-53 89-49 28 3 46-5 58-24" stroke="#0A3327" stroke-width="8" stroke-linecap="round"/>
+                        <path d="M36 119c20-28 46-38 78-31 32 7 52-5 69-36" stroke="#15C48E" stroke-width="5" stroke-linecap="round"/>
+                        <g stroke="#2F64D6" stroke-width="2" stroke-linecap="round"><path d="M101 92l20 11 20-11v-23l-20-11-20 11z"/><path d="M121 103v21M141 92l19 11M101 92l-19 12"/></g>
+                        <circle cx="121" cy="103" r="5" fill="#D88A24"/><circle cx="141" cy="92" r="4" fill="#2F64D6"/><circle cx="101" cy="92" r="4" fill="#15C48E"/>
+                      </svg>
+                    </div>
+                    <div class="demo-metrics">
+                      <div class="demo-metric"><span>confidence</span><strong data-demo-confidence>pending</strong></div>
+                      <div class="demo-metric"><span>trace</span><strong data-demo-trace>cell[5]</strong></div>
+                      <div class="demo-metric"><span>review</span><strong><b data-demo-findings>0</b> findings cleared</strong></div>
+                      <div class="demo-metric"><span>export</span><strong data-demo-export>.png + notebook</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-tab-panel" data-panel="notebook">
+                <pre class="demo-code" data-demo-code>In [5]:
+structure = load_structure("1M17")
+pocket = select_binding_pocket(structure, mutation="L858R")
+render_pocket(pocket, ligand="candidate-A")</pre>
+              </div>
+              <div class="demo-tab-panel" data-panel="report">
+                <div class="demo-report">
+                  <div class="demo-report-row"><strong data-demo-report-title>EGFR L858R pocket report</strong><span data-demo-report-copy>Hydrophobic pocket geometry and ligand contact map are traced to cell[7].</span></div>
+                  <div class="demo-report-row"><strong>Provenance</strong><span data-demo-report-prov>cells 5-7 · reviewer cleared · reproducible artifact bundle</span></div>
+                </div>
+              </div>
+            </section>
+            <div class="demo-split-h" aria-hidden="true"></div>
+            <section class="demo-pane demo-console" aria-labelledby="demo-console-title">
+              <header class="demo-pane-head"><h3 id="demo-console-title">Console / Log</h3><span data-demo-stream>stream idle</span></header>
+              <div class="demo-log" data-demo-log aria-live="polite">
+                <div class="demo-log-line"><time>00:00</time><span>workspace ready</span></div>
+              </div>
+              <footer class="demo-pane-foot"><span class="demo-status-dot" data-demo-dot></span><span data-demo-status>idle</span></footer>
+            </section>
+            <section class="demo-pane demo-approval" aria-labelledby="demo-approval-title">
+              <header class="demo-pane-head"><h3 id="demo-approval-title">Plan / Approval</h3><span>human gate</span></header>
+              <div class="demo-approval-body">
+                <div class="demo-approval-summary"><span data-demo-approval-frame>Frame a13f</span><strong data-demo-approval-title>Review proposed plan</strong></div>
+                <ol class="demo-steps">
+                  <li class="demo-step active" data-step="0"><i>1</i><span>Load structure and residue metadata</span></li>
+                  <li class="demo-step" data-step="1"><i>2</i><span>Select pocket and compute contacts</span></li>
+                  <li class="demo-step" data-step="2"><i>3</i><span>Render artifact with provenance</span></li>
+                  <li class="demo-step" data-step="3"><i>4</i><span>Review schema and export bundle</span></li>
+                </ol>
+                <button class="demo-approve" type="button" data-demo-approve>Approve demo run</button>
+              </div>
+            </section>
           </div>
         </div>
       </div>
@@ -669,6 +750,152 @@
     fit();
     return {start:start, stop:stop, fit:fit};
   }
+</script>
+<script>
+  (function(){
+    var demo=document.getElementById('demo');
+    if(!demo) return;
+    var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var timers=[], active='protein';
+    var examples={
+      protein:{
+        session:'EGFR pocket analysis',
+        agent:'Operon coordinator',
+        frame:'frame a13f',
+        input:'analyze 1M17 and render the binding pocket',
+        prompt:'Compare EGFR L858R binding-pocket geometry against a candidate inhibitor and generate a reproducible figure.',
+        reply:'I will route structure loading, pocket selection, rendering, and review through a persistent kernel.',
+        artifact:'binding-pocket.png',
+        type:'image/png',
+        code:'In [5]:\nstructure = load_structure("1M17")\npocket = select_binding_pocket(structure, mutation="L858R")\nrender_pocket(pocket, ligand="candidate-A")',
+        report:'EGFR L858R pocket report',
+        copy:'Hydrophobic pocket geometry and ligand contact map are traced to cell[7].',
+        prov:'cells 5-7 · reviewer cleared · reproducible artifact bundle',
+        steps:['Load structure and residue metadata','Select pocket and compute contacts','Render artifact with provenance','Review schema and export bundle'],
+        logs:['fetch pdb 1M17 from local cache','parse chains and mutation annotations','compute 18 pocket contacts','render binding-pocket.png','review cleared: schema + provenance']
+      },
+      genome:{
+        session:'Variant interpretation',
+        agent:'Helix analyst',
+        frame:'frame b92c',
+        input:'annotate BRCA1 variants and generate a small report',
+        prompt:'Annotate BRCA1 variants from a VCF, summarize clinical significance, and export a reproducible table.',
+        reply:'I will route variant parsing, annotation, table generation, and reviewer checks through the workspace.',
+        artifact:'brca1-variants.csv',
+        type:'text/csv',
+        code:'In [5]:\nvcf = load_vcf("sample.vcf")\nvariants = annotate_variants(vcf, gene="BRCA1")\nexport_table(variants, "brca1-variants.csv")',
+        report:'BRCA1 variant summary',
+        copy:'Variant annotations, allele counts, and significance notes are tied to the exported CSV.',
+        prov:'cells 5-7 · annotation sources captured · reproducible table',
+        steps:['Load VCF and sample metadata','Filter BRCA1 coding variants','Export annotation table','Review clinical-note provenance'],
+        logs:['load sample.vcf','filter gene=BRCA1','annotate 12 candidate variants','write brca1-variants.csv','review cleared: table + sources']
+      },
+      material:{
+        session:'Perovskite screening',
+        agent:'Materials scout',
+        frame:'frame c41e',
+        input:'screen candidate perovskites for band gap and stability',
+        prompt:'Screen candidate perovskites, compare band gap and formation energy, and produce a ranked artifact.',
+        reply:'I will route structure lookup, descriptor calculation, ranking, and export validation through the kernel.',
+        artifact:'perovskite-ranking.json',
+        type:'application/json',
+        code:'In [5]:\nmaterials = query_materials("ABX3 perovskite")\nranked = rank_by_gap_and_stability(materials)\nwrite_json(ranked, "perovskite-ranking.json")',
+        report:'Perovskite candidate ranking',
+        copy:'Band gap and stability descriptors are ranked with source ids and calculation settings.',
+        prov:'cells 5-7 · source ids retained · reproducible JSON',
+        steps:['Query candidate structures','Calculate gap and stability descriptors','Rank and serialize artifact','Review source ids and settings'],
+        logs:['query 64 ABX3 candidates','calculate descriptor matrix','rank top 8 materials','write perovskite-ranking.json','review cleared: ids + parameters']
+      }
+    };
+    function one(sel){ return demo.querySelector(sel); }
+    function all(sel){ return Array.prototype.slice.call(demo.querySelectorAll(sel)); }
+    function setText(sel,text){ var el=one(sel); if(el) el.textContent=text; }
+    function clearTimers(){ while(timers.length) clearTimeout(timers.pop()); }
+    function setStatus(label,cls){
+      setText('[data-demo-status]',label);
+      var dot=one('[data-demo-dot]');
+      if(dot) dot.className='demo-status-dot'+(cls?' '+cls:'');
+    }
+    function setTab(id){
+      all('[data-tab]').forEach(function(btn){ var on=btn.getAttribute('data-tab')===id; btn.classList.toggle('active',on); btn.setAttribute('aria-selected',on?'true':'false'); });
+      all('[data-panel]').forEach(function(panel){ panel.classList.toggle('active',panel.getAttribute('data-panel')===id); });
+    }
+    function appendLog(text,kind,idx){
+      var log=one('[data-demo-log]');
+      if(!log) return;
+      var row=document.createElement('div');
+      row.className='demo-log-line'+(kind?' '+kind:'');
+      var time=document.createElement('time');
+      time.textContent='00:0'+idx;
+      var span=document.createElement('span');
+      span.textContent=text;
+      row.appendChild(time); row.appendChild(span); log.appendChild(row);
+      log.scrollTop=log.scrollHeight;
+    }
+    function resetFlow(){
+      clearTimers();
+      all('[data-step]').forEach(function(step,i){ step.classList.toggle('active',i===0); step.classList.remove('done'); });
+      all('[data-demo-tool]').forEach(function(tool,i){ tool.classList.toggle('active',i===0); });
+      var log=one('[data-demo-log]');
+      if(log) log.innerHTML='<div class="demo-log-line"><time>00:00</time><span>workspace ready</span></div>';
+      setText('[data-demo-confidence]','pending');
+      setText('[data-demo-trace]','cell[5]');
+      setText('[data-demo-findings]','0');
+      setText('[data-demo-stream]','stream idle');
+      setStatus('idle','');
+      setText('[data-demo-approval-title]','Review proposed plan');
+    }
+    function loadExample(name){
+      active=name;
+      var ex=examples[name];
+      all('[data-example]').forEach(function(btn){ btn.classList.toggle('active',btn.getAttribute('data-example')===name); });
+      setText('[data-demo-session]',ex.session);
+      setText('[data-demo-agent]',ex.agent);
+      setText('[data-demo-frame]',ex.frame);
+      setText('[data-demo-approval-frame]','Frame '+ex.frame.replace('frame ',''));
+      setText('[data-demo-input]',ex.input);
+      setText('[data-demo-prompt]',ex.prompt);
+      setText('[data-demo-reply]',ex.reply);
+      setText('[data-demo-artifact-name]',ex.artifact);
+      setText('[data-demo-artifact-type]',ex.type);
+      setText('[data-demo-code]',ex.code);
+      setText('[data-demo-report-title]',ex.report);
+      setText('[data-demo-report-copy]',ex.copy);
+      setText('[data-demo-report-prov]',ex.prov);
+      all('[data-step] span').forEach(function(span,i){ span.textContent=ex.steps[i] || span.textContent; });
+      resetFlow();
+      setTab('artifact');
+    }
+    function runDemo(){
+      var ex=examples[active], delay=reduce?90:540;
+      resetFlow();
+      setStatus('running','running');
+      setText('[data-demo-stream]','stream '+ex.frame.replace('frame ',''));
+      setText('[data-demo-approval-title]','Running approved plan');
+      ex.logs.forEach(function(line,i){
+        timers.push(setTimeout(function(){
+          all('[data-step]').forEach(function(step,j){ step.classList.toggle('active',j===Math.min(i,3)); if(j<i) step.classList.add('done'); });
+          all('[data-demo-tool]').forEach(function(tool,j){ tool.classList.toggle('active',j===Math.min(i,3)); });
+          setText('[data-demo-trace]','cell['+(5+Math.min(i,2))+']');
+          appendLog(line,'',i+1);
+          if(i===ex.logs.length-1){
+            all('[data-step]').forEach(function(step){ step.classList.remove('active'); step.classList.add('done'); });
+            setText('[data-demo-confidence]','verified');
+            setText('[data-demo-findings]','2');
+            setText('[data-demo-stream]','stream complete');
+            setStatus('succeeded','ok');
+            setText('[data-demo-approval-title]','Review cleared');
+          }
+        }, delay*(i+1)));
+      });
+    }
+    all('[data-tab]').forEach(function(btn){ btn.addEventListener('click',function(){ setTab(btn.getAttribute('data-tab')); }); });
+    all('[data-example]').forEach(function(btn){ btn.addEventListener('click',function(){ loadExample(btn.getAttribute('data-example')); }); });
+    var run=one('[data-demo-run]'), approve=one('[data-demo-approve]');
+    if(run) run.addEventListener('click',runDemo);
+    if(approve) approve.addEventListener('click',runDemo);
+    loadExample(active);
+  })();
 </script>
 <script>
   (function(){
